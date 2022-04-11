@@ -1,0 +1,28 @@
+<div th:switch="${directors}">
+    <h2 th:case="null">No directors yet!</h2>
+        <div th:case="*">
+            <h2>Directors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Directors Name</th>
+                        <th>Directors Gender</th>
+                        <th>Directors Birthdate</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="director : ${directors}">
+                    <td th:text="${director.name}"></td>
+                    <td th:text="${director.gender}"></td>
+                    <td th:text="${director.birthdate}"></td>
+                    
+                    <td><a th:href="@{/editdirector/{id}(id=${director.id})}">Edit</a></td>
+                    <td><a th:href="@{/deletedirector/{id}(id=${director.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/adddirectorform">Add a new director</a></p>
+</div>

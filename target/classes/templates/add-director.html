@@ -1,0 +1,12 @@
+<form action="#" th:action="@{/adddirector}" th:object="${director}" method="post">
+    <label for="name">Director Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="name">Director Gender</label>
+    <input type="text" th:field="*{gender}" id="gender" placeholder="gender">
+    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    <label for="name">Director Birthdate</label>
+    <input type="date" th:field="*{birthdate}" id="birthdate" placeholder="birthdate">
+    <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span>
+    <input type="submit" value="Add Director">   
+</form>

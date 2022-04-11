@@ -1,0 +1,24 @@
+<div th:switch="${categories}">
+    <h2 th:case="null">No categories yet!</h2>
+        <div th:case="*">
+            <h2>Categories</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="category : ${categories}">
+                    <td th:text="${category.categoryName}"></td>
+                    
+                    <td><a th:href="@{/editcategory/{id}(id=${category.categoryId})}">Edit</a></td>
+                    <td><a th:href="@{/deletecategory/{id}(id=${category.categoryId})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/addcat">Add a new category</a></p>
+</div>

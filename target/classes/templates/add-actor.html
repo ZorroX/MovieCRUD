@@ -1,0 +1,12 @@
+<form action="#" th:action="@{/addactor}" th:object="${actor}" method="post">
+    <label for="name">Actor Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="name">Actor Gender</label>
+    <input type="text" th:field="*{gender}" id="gender" placeholder="gender">
+    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    <label for="name">Actor Birthdate</label>
+    <input type="date" th:field="*{birthdate}" id="birthdate" placeholder="birthdate">
+    <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span>
+    <input type="submit" value="Add Actor">   
+</form>

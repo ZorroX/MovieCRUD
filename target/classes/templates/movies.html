@@ -1,0 +1,32 @@
+<div th:switch="${movies}">
+    <h2 th:case="null">No movies yet!</h2>
+        <div th:case="*">
+            <h2>Movies</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Movie Name</th>
+                        <th>Movie Sinopsis</th>
+                        <th>Director</th>
+                        <th>Category</th>
+                        <th>Release Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td th:text="${movie.movieName}"></td>
+                    <td th:text="${movie.movieSinopsis}"></td>
+                    <td th:text="${movie.director.name}"></td>
+                    <td th:text="${movie.category.categoryName}"></td>
+                    <td th:text="${movie.movieDate}"></td>
+                    
+                    <td><a th:href="@{/editmovie/{id}(id=${movie.movieId})}">Edit</a></td>
+                    <td><a th:href="@{/deletemovie/{id}(id=${movie.movieId})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/addmovieform">Add a new movie</a></p>
+</div>

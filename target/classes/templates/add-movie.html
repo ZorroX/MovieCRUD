@@ -1,0 +1,22 @@
+<form action="#" th:action="@{/addmovie}" th:object="${movie}" method="post">
+    <label for="name">Movie Name</label>
+    <input type="text" th:field="*{movieName}" id="name" placeholder="name">
+    <span th:if="${#fields.hasErrors('movieName')}" th:errors="*{name}"></span>
+    <label for="name">Movie Sinopsis</label>
+    <input type="text" th:field="*{movieSinopsis}" id="sinopsis" placeholder="sinopsis">
+    <span th:if="${#fields.hasErrors('movieSinopsis')}" th:errors="*{sinopsis}"></span>
+    <label for="name">Movie Category</label>
+    <select class="form-control"  th:field="*{category}">
+        <option value="0">select category</option>
+        <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+    </select>
+    <label for="name">Movie Director</label>
+    <select class="form-control" th:field="*{director}">
+        <option value="0">select director</option>
+        <option th:each="director : ${directors}" th:value="${director.id}" th:text="${director.name}"></option>
+    </select>
+    <label for="name">Movie Release</label>
+    <input type="date" th:field="*{movieDate}" id="movieDate" placeholder="movieDate">
+    <span th:if="${#fields.hasErrors('movieDate')}" th:errors="*{movieDate}"></span>
+    <input type="submit" value="Add Movie">   
+</form>

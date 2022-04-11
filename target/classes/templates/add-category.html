@@ -1,0 +1,6 @@
+<form action="#" th:action="@{/addcategory}" th:object="${category}" method="post">
+    <label for="name">Category Name</label>
+    <input type="text" th:field="*{categoryName}" id="name" placeholder="name">
+    <span th:if="${#fields.hasErrors('categoryName')}" th:errors="*{name}"></span>
+    <input type="submit" value="Add Category">   
+</form>

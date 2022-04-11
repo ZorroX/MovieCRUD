@@ -1,0 +1,28 @@
+<div th:switch="${actors}">
+    <h2 th:case="null">No actors yet!</h2>
+        <div th:case="*">
+            <h2>Actors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Actors Name</th>
+                        <th>Actors Gender</th>
+                        <th>Actors Birthdate</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="actor : ${actors}">
+                    <td th:text="${actor.name}"></td>
+                    <td th:text="${actor.gender}"></td>
+                    <td th:text="${actor.birthdate}"></td>
+                    
+                    <td><a th:href="@{/editactor/{id}(id=${actor.id})}">Edit</a></td>
+                    <td><a th:href="@{/deleteactor/{id}(id=${actor.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/addactorform">Add a new actor</a></p>
+</div>
