@@ -450,8 +450,60 @@ Also, because I'm using just one repository for Directors and Actors, Hibernate 
 
 
 
+## SPRING AOP
+So with the basic functionality working i will be adding AOP,  Aspects are a way to crosscut an application and adding functionality without modifying the implemented code.
+I will be adding an audit for DB access, so because all my methods are using the CrudRepository Interface i can set a pinpoint to all the methods in that class to log any acces to the DB.
+
+    package  com.bebo.moviecrud.audit;
+    import  org.aspectj.lang.JoinPoint;
+    import  org.aspectj.lang.annotation.Aspect;
+    import  org.aspectj.lang.annotation.Before;
+    import  org.springframework.stereotype.Component;
+     @Aspect
+    @Component
+    public  class  ControllerAspect {
+    @Before(value = "execution(* org.springframework.data.repository.CrudRepository.*(..))")
+    public  void  beforeAdvice(JoinPoint  joinPoint) {
+    System.out.println("DB Access from method: " + joinPoint.getSignature());
+    
+    }
+    
+    }
+
+So i set it to Before, so it actually an attempt to access, but we can set it to Before and also also there is a Trow to catch errors specifically.
+
+And also i Need to add the net tag to my MovieCrudApplication class
+
+@EnableAspectJAutoProxy(proxyTargetClass=true)
 
 
+## SPRING AOP
+
+  
+
+For the Spring Transactions i was planning to do a Bulk insert of actors, but i was having troubles desingning a form that dinamically generate an actor form, so I did just a test method to demostrate the funcionality.
+
+  
+
+So First I tried to add the transactional method to the PersonController
+
+  
+
+    @Transactional(rollbackFor = { SQLException.class })
+    public void bulkActors(List<Actor> actors) throws SQLException {
+    
+    try {
+    for (Actor actor : actors) {
+    personRepository.save(actor);
+    }
+    
+    } catch (Exception e) {
+    throw new SQLException("Throwing exception for demoing rollback");
+    }
+    }
+and of course this is a very bad way to implement a Try but its just for the sake of the demonstration.
+
+This was not rolling back, so I read that I needed another stereotype of @Component, the @Service, that its just a Component but for the Service logic, so I ended up creating a new Package with the service.
 
 
 

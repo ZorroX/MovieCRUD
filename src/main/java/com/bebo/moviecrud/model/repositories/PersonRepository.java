@@ -19,5 +19,9 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     @Query("from Actor where id=:i")
     Actor findActorById(long i);
 
+    @Query("from Director where id=:i")
+    Actor findDirectorById(long i);
+
+
 
 }
