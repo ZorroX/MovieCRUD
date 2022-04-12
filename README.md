@@ -477,7 +477,7 @@ And also i Need to add the net tag to my MovieCrudApplication class
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 
 
-## SPRING AOP
+## SPRING TRANSACTIONS
 
   
 
